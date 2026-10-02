@@ -8,42 +8,27 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane xmlns="http://javafx.com/javafx/21"
-           xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="com.library.controller.LoginController"
-           stylesheets="@../css/style.css"
-           styleClass="root"
-           prefWidth="1000"
-           prefHeight="650">
+<StackPane prefHeight="650" prefWidth="1000" styleClass="root" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.controller.LoginController">
 
-    <HBox prefWidth="900"
-          prefHeight="560">
+    <HBox prefHeight="560" prefWidth="900">
 
         <!-- ==============================
              LEFT SIDE - LIBRARY
              ============================== -->
 
-        <StackPane styleClass="library-section"
-                   prefWidth="500"
-                   prefHeight="560">
+        <StackPane prefHeight="560" prefWidth="500" styleClass="library-section">
 
-            <VBox spacing="15"
-                  alignment="CENTER_LEFT"
-                  maxWidth="430">
+               <VBox alignment="CENTER_LEFT" maxWidth="430" spacing="15">
+      
+                      <!-- MAIN TITLE -->
+      
+                      <Label styleClass="library-title" text="Library Management " />
 
-                <!-- MAIN TITLE -->
+                   <Label styleClass="library-subtitle" text="Access knowledge, build your future." />
+      
+                      <Label styleClass="library-description" text="Manage books, members and borrowing records easily." wrapText="true" />
 
-                <Label text="Library Management "
-                       styleClass="library-title"/>
-
-                <Label text="Access knowledge, build your future."
-                       styleClass="library-subtitle"/>
-
-                <Label text="Manage books, members and borrowing records easily."
-                       wrapText="true"
-                       styleClass="library-description"/>
-
-            </VBox>
+               </VBox>
 
         </StackPane>
 
@@ -52,88 +37,57 @@
              RIGHT SIDE - LOGIN
              ============================== -->
 
-        <StackPane prefWidth="400"
-                   prefHeight="560">
+        <StackPane prefHeight="560" prefWidth="400">
 
-            <VBox spacing="18"
-                  alignment="CENTER"
-                  maxWidth="330"
-                  styleClass="login-card">
+            <VBox alignment="CENTER" maxWidth="430.0" prefHeight="660.0" prefWidth="430.0" spacing="18" styleClass="login-card">
 
                 <!-- LOGIN TITLE -->
 
-                <Label text="Welcome Back!"
-                       styleClass="login-title"/>
+                <Label styleClass="login-title" text="Welcome Back!" />
 
-                <Label text="Please login to continue"
-                       styleClass="login-subtitle"/>
+                <Label styleClass="login-subtitle" text="Please login to continue" />
 
 
                 <!-- USERNAME -->
 
-                <VBox spacing="7"
-                      maxWidth="300">
+                <VBox maxWidth="300" spacing="7">
 
-                    <Label text="Username"
-                           styleClass="field-label"/>
+                    <Label styleClass="field-label" text="Username" />
 
-                    <TextField fx:id="usernameField"
-                               promptText="Enter your username"
-                               prefWidth="300"
-                               prefHeight="45"
-                               styleClass="input-field"/>
+                    <TextField fx:id="usernameField" prefHeight="45" prefWidth="300" promptText="Enter your username" styleClass="input-field" />
 
                 </VBox>
 
 
                 <!-- PASSWORD -->
 
-                <VBox spacing="7"
-                      maxWidth="300">
+                <VBox maxWidth="300" spacing="7">
 
-                    <Label text="Password"
-                           styleClass="field-label"/>
+                    <Label styleClass="field-label" text="Password" />
 
-                    <PasswordField fx:id="passwordField"
-                                   promptText="Enter your password"
-                                   prefWidth="300"
-                                   prefHeight="45"
-                                   styleClass="input-field"/>
+                    <PasswordField fx:id="passwordField" prefHeight="45" prefWidth="300" promptText="Enter your password" styleClass="input-field" />
 
                 </VBox>
 
 
                 <!-- ERROR MESSAGE -->
 
-                <Label fx:id="errorLabel"
-                       text=""
-                       maxWidth="300"
-                       wrapText="true"
-                       styleClass="error-label"/>
+                <Label fx:id="errorLabel" maxWidth="300" styleClass="error-label" text="" wrapText="true" />
 
 
                 <!-- LOGIN BUTTON -->
 
-                <Button text="LOGIN"
-                        onAction="#handleLogin"
-                        prefWidth="300"
-                        prefHeight="45"
-                        styleClass="login-button"/>
+                <Button onAction="#handleLogin" prefHeight="45" prefWidth="300" styleClass="login-button" text="LOGIN" />
 
 
                 <!-- CLEAR BUTTON -->
 
-                <Button text="CLEAR"
-                        onAction="#handleClear"
-                        prefWidth="300"
-                        prefHeight="42"
-                        styleClass="clear-button"/>
+                <Button onAction="#handleClear" prefHeight="42" prefWidth="300" styleClass="clear-button" text="CLEAR" />
 
 
                 <!-- FOOTER -->
 
-                <Label text="Library Management System • 2026"
-                       styleClass="footer-label"/>
+                <Label styleClass="footer-label" text="Library Management System • 2026" />
 
             </VBox>
 
