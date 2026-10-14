@@ -1,262 +1,282 @@
 /* =========================================================
-   LIBRARY MANAGEMENT SYSTEM
-   COMPLETE STYLE.CSS
-   GREEN THEME
-   LOGIN + DASHBOARD
+   LIBRARY MANAGEMENT SYSTEM - STYLE.CSS
+   THEME: AdminLTE style (dark sidebar + orange header)
+   LOGIN + DASHBOARD + ADD BOOK FORM
+   =========================================================
+
+   COLOR PALETTE
+   Dark sidebar ........ #222D32   (hover #1E282C)
+   Sidebar active ...... #1E282C  + left border #F39C12
+   Header / orange ..... #F39C12   (dark #DB8B0B)
+   Aqua / blue ......... #00C0EF   (dark #00A7D0)
+   Green ............... #00A65A   (dark #008D4C)
+   Red ................. #DD4B39   (dark #C64333)
+   Page background ..... #ECF0F5
+   Text dark ........... #333333
+   Text muted .......... #777777
    ========================================================= */
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+.root {
+    -fx-background-color: #222D32;
+    -fx-font-family: "Segoe UI";
+}
+
+.label {
+    -fx-font-family: "Segoe UI";
+}
+
+.button {
+    -fx-font-family: "Segoe UI";
+    -fx-cursor: hand;
+}
 
 
 /* =========================================================
    LOGIN PAGE
    ========================================================= */
 
-.root {
-    -fx-background-color: linear-gradient(
-        to bottom right,
-        #2E8B57,
-        #4CAF7A
-    );
+.login-root {
+    -fx-background-color: #ECF0F5;
+    -fx-font-family: "Segoe UI";
 }
 
 
-/* =========================================================
-   LOGIN - LEFT LIBRARY SECTION
-   ========================================================= */
+/* ---------- LEFT PANEL ---------- */
+
+.login-left {
+    -fx-background-color: linear-gradient(to bottom right, #222D32, #1E282C);
+    -fx-padding: 35px;
+}
+
+.login-book-icon {
+    -fx-font-size: 65px;
+}
+
+.login-brand {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+
+.login-brand-subtitle {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #F39C12;
+}
+
+.login-tagline {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+    -fx-text-alignment: center;
+}
+
+.login-quote {
+    -fx-font-size: 19px;
+    -fx-font-style: italic;
+    -fx-text-fill: #FFFFFF;
+}
+
+.login-description {
+    -fx-font-size: 13px;
+    -fx-text-fill: #B8C7CE;
+    -fx-text-alignment: center;
+}
+
+.login-footer-left {
+    -fx-font-size: 10px;
+    -fx-text-fill: #8AA4AF;
+}
+
+
+/* ---------- RIGHT PANEL ---------- */
+
+.login-right {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 40px 60px;
+}
+
+.login-heading {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #222D32;
+}
+
+.login-subheading {
+    -fx-font-size: 14px;
+    -fx-text-fill: #777777;
+}
+
+.login-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.login-input {
+    -fx-pref-height: 44px;
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D2D6DE;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-padding: 0 12px;
+    -fx-font-size: 13px;
+    -fx-text-fill: #333333;
+    -fx-prompt-text-fill: #A0A8AE;
+}
+
+.login-input:hover {
+    -fx-border-color: #F39C12;
+}
+
+.login-input:focused {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #F39C12;
+    -fx-border-width: 1.5px;
+}
+
+.login-button {
+    -fx-pref-height: 45px;
+    -fx-background-color: #F39C12;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.login-button:hover {
+    -fx-background-color: #DB8B0B;
+}
+
+.login-button:pressed {
+    -fx-background-color: #C27B09;
+}
+
+.login-clear-button {
+    -fx-pref-height: 42px;
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #222D32;
+    -fx-border-width: 1.2px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-text-fill: #222D32;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.login-clear-button:hover {
+    -fx-background-color: #ECF0F5;
+}
+
+.login-clear-button:pressed {
+    -fx-background-color: #D2D6DE;
+}
+
+.login-error {
+    -fx-font-size: 12px;
+    -fx-text-fill: #DD4B39;
+    -fx-font-weight: bold;
+}
+
+.login-footer {
+    -fx-font-size: 10px;
+    -fx-text-fill: #8A948D;
+    -fx-text-alignment: center;
+}
+
+
+/* ---------- OLD LOGIN CLASS NAMES (keep if your FXML uses them) ---------- */
 
 .library-section {
     -fx-background-image: url("../images/Library.png");
-
     -fx-background-size: cover;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
-
     -fx-background-radius: 25 0 0 25;
-
     -fx-padding: 45px;
 }
 
-
-/* LOGIN MAIN TITLE */
-
 .library-title {
     -fx-text-fill: white;
-
     -fx-font-family: "Segoe UI";
     -fx-font-size: 40px;
     -fx-font-weight: bold;
-
     -fx-wrap-text: true;
-
-    -fx-effect: dropshadow(
-        gaussian,
-        rgba(23,74,50,0.30),
-        8,
-        0.3,
-        2,
-        3
-    );
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 8, 0.3, 2, 3);
 }
 
-
-/* LOGIN SUBTITLE */
-
 .library-subtitle {
-    -fx-text-fill: #E8F7EF;
-
-    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #F39C12;
     -fx-font-size: 20px;
     -fx-font-weight: bold;
 }
 
-
-/* LOGIN DESCRIPTION */
-
 .library-description {
-    -fx-text-fill: #EEF9F3;
-
-    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #ECF0F5;
     -fx-font-size: 15px;
-
     -fx-line-spacing: 5px;
 }
 
-
-/* =========================================================
-   LOGIN CARD
-   ========================================================= */
-
 .login-card {
     -fx-background-color: white;
-
     -fx-background-radius: 0 25 25 0;
-
     -fx-padding: 40px;
-
-    -fx-effect: dropshadow(
-        gaussian,
-        rgba(23,74,50,0.18),
-        25,
-        0.2,
-        0,
-        8
-    );
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.18), 25, 0.2, 0, 8);
 }
 
-
-/* LOGIN TITLE */
-
 .login-title {
-    -fx-text-fill: #2E8B57;
-
-    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #222D32;
     -fx-font-size: 30px;
     -fx-font-weight: bold;
 }
 
-
-/* LOGIN SUBTITLE */
-
 .login-subtitle {
     -fx-text-fill: #777777;
-
-    -fx-font-family: "Segoe UI";
     -fx-font-size: 14px;
 }
 
-
-/* =========================================================
-   FORM LABELS
-   ========================================================= */
-
 .field-label {
-    -fx-text-fill: #35453B;
-
-    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #333333;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
 }
 
-
-/* =========================================================
-   INPUT FIELDS
-   ========================================================= */
-
 .input-field {
-    -fx-background-color: #F5F9F6;
-
-    -fx-border-color: #D7EADF;
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D2D6DE;
     -fx-border-width: 1.5px;
-    -fx-border-radius: 10px;
-
-    -fx-background-radius: 10px;
-
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
     -fx-padding: 0 14px;
-
-    -fx-font-family: "Segoe UI";
     -fx-font-size: 14px;
 }
 
-
 .input-field:hover {
-    -fx-border-color: #9BC9AD;
+    -fx-border-color: #F39C12;
 }
 
-
 .input-field:focused {
-    -fx-background-color: white;
-
-    -fx-border-color: #2E8B57;
+    -fx-border-color: #F39C12;
     -fx-border-width: 2px;
 }
 
-
-/* =========================================================
-   LOGIN BUTTON
-   ========================================================= */
-
-.login-button {
-    -fx-background-color: linear-gradient(
-        to right,
-        #2E8B57,
-        #4CAF7A
-    );
-
-    -fx-text-fill: white;
-
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 15px;
-    -fx-font-weight: bold;
-
-    -fx-background-radius: 10px;
-
-    -fx-cursor: hand;
-}
-
-
-.login-button:hover {
-    -fx-background-color: #24734A;
-}
-
-
-.login-button:pressed {
-    -fx-background-color: #1B5A39;
-}
-
-
-/* =========================================================
-   CLEAR BUTTON
-   ========================================================= */
-
-.clear-button {
-    -fx-background-color: white;
-
-    -fx-text-fill: #2E8B57;
-
-    -fx-border-color: #2E8B57;
-    -fx-border-width: 1.5px;
-    -fx-border-radius: 10px;
-
-    -fx-background-radius: 10px;
-
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-
-    -fx-cursor: hand;
-}
-
-
-.clear-button:hover {
-    -fx-background-color: #E8F7EF;
-}
-
-
-.clear-button:pressed {
-    -fx-background-color: #DDF2E6;
-}
-
-
-/* =========================================================
-   ERROR MESSAGE
-   ========================================================= */
-
 .error-label {
-    -fx-text-fill: #D64550;
-
-    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #DD4B39;
     -fx-font-size: 12px;
     -fx-font-weight: bold;
 }
 
-
-/* =========================================================
-   LOGIN FOOTER
-   ========================================================= */
-
 .footer-label {
     -fx-text-fill: #8A948D;
-
-    -fx-font-family: "Segoe UI";
     -fx-font-size: 11px;
 }
 
@@ -266,112 +286,139 @@
    ========================================================= */
 
 .dashboard-root {
-    -fx-background-color: #F5F9F6;
+    -fx-background-color: #ECF0F5;
+}
+
+.dashboard-content {
+    -fx-background-color: #ECF0F5;
 }
 
 
 /* =========================================================
-   DASHBOARD SIDEBAR
+   TOP BAR (orange header)
+   ========================================================= */
+
+.topbar {
+    -fx-background-color: #F39C12;
+    -fx-padding: 0 15px;
+}
+
+.topbar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+}
+
+.topbar-button:hover {
+    -fx-background-color: rgba(0,0,0,0.10);
+}
+
+
+/* =========================================================
+   SIDEBAR
    ========================================================= */
 
 .sidebar {
-    -fx-background-color: linear-gradient(
-        to bottom,
-        #2E8B57,
-        #174A32
-    );
+    -fx-background-color: #222D32;
 }
 
-
-/* SIDEBAR TITLE */
+/* Logo area at the very top (orange-dark strip like the image) */
+.sidebar-logo {
+    -fx-background-color: #DB8B0B;
+    -fx-padding: 0 15px;
+}
 
 .sidebar-title {
     -fx-text-fill: white;
-
     -fx-font-family: "Segoe UI";
-    -fx-font-size: 28px;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-underline: true;
+}
+
+.sidebar-subtitle {
+    -fx-text-fill: #B8C7CE;
+    -fx-font-size: 12px;
+}
+
+/* user panel (admin - Online) */
+.user-panel {
+    -fx-background-color: #222D32;
+    -fx-padding: 15px;
+}
+
+.user-name {
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
     -fx-font-weight: bold;
 }
 
+.user-status {
+    -fx-text-fill: #B8C7CE;
+    -fx-font-size: 10px;
+}
 
-/* SIDEBAR SUBTITLE */
-
-.sidebar-subtitle {
-    -fx-text-fill: #E8F7EF;
-
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 14px;
+/* "HEADER" small title above the menu */
+.sidebar-header {
+    -fx-background-color: #1A2226;
+    -fx-text-fill: #4B646F;
+    -fx-font-size: 11px;
+    -fx-padding: 8px 15px;
 }
 
 
-/* =========================================================
-   SIDEBAR BUTTONS
-   ========================================================= */
+/* ---------- SIDEBAR BUTTONS ---------- */
 
 .sidebar-button {
     -fx-background-color: transparent;
-
-    -fx-text-fill: white;
-
+    -fx-text-fill: #B8C7CE;
     -fx-font-family: "Segoe UI";
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-
+    -fx-font-size: 13px;
+    -fx-font-weight: normal;
     -fx-alignment: CENTER_LEFT;
-
     -fx-padding: 0 15px;
-
-    -fx-background-radius: 10px;
-
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 0 0 3px;
     -fx-cursor: hand;
 }
-
 
 .sidebar-button:hover {
-    -fx-background-color: rgba(255,255,255,0.18);
+    -fx-background-color: #1E282C;
+    -fx-text-fill: white;
+    -fx-border-color: #F39C12;
 }
-
 
 .sidebar-button:pressed {
-    -fx-background-color: rgba(255,255,255,0.30);
+    -fx-background-color: #1A2226;
+}
+
+/* currently selected page (add this style class from code) */
+.sidebar-button-active {
+    -fx-background-color: #1E282C;
+    -fx-text-fill: white;
+    -fx-border-color: #F39C12;
 }
 
 
-/* =========================================================
-   LOGOUT BUTTON
-   ========================================================= */
+/* ---------- LOGOUT BUTTON ---------- */
 
 .logout-button {
-    -fx-background-color: white;
-
-    -fx-text-fill: #2E8B57;
-
-    -fx-font-family: "Segoe UI";
+    -fx-background-color: #DD4B39;
+    -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-
-    -fx-background-radius: 10px;
-
+    -fx-background-radius: 3px;
     -fx-cursor: hand;
 }
 
-
 .logout-button:hover {
-    -fx-background-color: #E8F7EF;
+    -fx-background-color: #C64333;
 }
-
 
 .logout-button:pressed {
-    -fx-background-color: #DDF2E6;
-}
-
-
-/* =========================================================
-   DASHBOARD MAIN CONTENT
-   ========================================================= */
-
-.dashboard-content {
-    -fx-background-color: #F5F9F6;
+    -fx-background-color: #AF3C2D;
 }
 
 
@@ -380,110 +427,150 @@
    ========================================================= */
 
 .dashboard-title {
-    -fx-text-fill: #21352A;
+    -fx-text-fill: #333333;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 22px;
+    -fx-font-weight: normal;
+}
 
+.dashboard-subtitle {
+    -fx-text-fill: #777777;
+    -fx-font-size: 13px;
+}
+
+.breadcrumb-text {
+    -fx-text-fill: #444444;
+    -fx-font-size: 11px;
+}
+
+.admin-label {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #F39C12;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 18px;
+    -fx-background-radius: 3px;
+    -fx-border-color: #F39C12;
+    -fx-border-radius: 3px;
+}
+
+
+/* =========================================================
+   STAT CARDS (small colored boxes: Books, Members ...)
+   Use: stat-card + one color class
+   ========================================================= */
+
+.stat-card {
+    -fx-background-color: #00C0EF;
+    -fx-background-radius: 3px;
+    -fx-padding: 15px 15px 0 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 3, 0.1, 0, 1);
+}
+
+.stat-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.30), 8, 0.2, 0, 3);
+}
+
+.stat-aqua   { -fx-background-color: #00C0EF; }
+.stat-green  { -fx-background-color: #00A65A; }
+.stat-yellow { -fx-background-color: #F39C12; }
+.stat-red    { -fx-background-color: #DD4B39; }
+
+/* big number (3, 2, 1, 0) */
+.stat-number {
+    -fx-text-fill: white;
     -fx-font-family: "Segoe UI";
     -fx-font-size: 34px;
     -fx-font-weight: bold;
 }
 
-
-.dashboard-subtitle {
-    -fx-text-fill: #718078;
-
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 15px;
+/* name (Books, Members ...) */
+.stat-title {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
 }
 
-
-/* =========================================================
-   ADMIN LABEL
-   ========================================================= */
-
-.admin-label {
-    -fx-background-color: #E8F7EF;
-
-    -fx-text-fill: #2E8B57;
-
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-
-    -fx-padding: 10px 18px;
-
-    -fx-background-radius: 20px;
+/* big faded icon on the right */
+.stat-icon {
+    -fx-text-fill: rgba(0,0,0,0.15);
+    -fx-font-size: 70px;
 }
 
-
-/* =========================================================
-   STATISTIC CARDS
-   ========================================================= */
-
-.stat-card {
-    -fx-background-color: white;
-
-    -fx-background-radius: 15px;
-
-    -fx-padding: 20px;
-
-    -fx-effect: dropshadow(
-        gaussian,
-        rgba(23,74,50,0.11),
-        15,
-        0.15,
-        0,
-        5
-    );
+/* "More info" bottom strip */
+.stat-footer {
+    -fx-background-color: rgba(0,0,0,0.10);
+    -fx-background-radius: 0 0 3 3;
+    -fx-text-fill: rgba(255,255,255,0.85);
+    -fx-font-size: 12px;
+    -fx-alignment: CENTER;
+    -fx-cursor: hand;
 }
 
-
-.stat-card:hover {
-    -fx-effect: dropshadow(
-        gaussian,
-        rgba(46,139,87,0.28),
-        20,
-        0.20,
-        0,
-        6
-    );
+.stat-footer:hover {
+    -fx-background-color: rgba(0,0,0,0.18);
+    -fx-text-fill: white;
 }
-
-
-/* =========================================================
-   STAT CARD HEADING
-   ========================================================= */
 
 .card-heading {
-    -fx-text-fill: #2E8B57;
-
-    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #F39C12;
     -fx-font-size: 11px;
     -fx-font-weight: bold;
 }
 
 
 /* =========================================================
-   STAT CARD TITLE
+   INFO BOXES (Issued / Returned / Not Returned / Date)
+   white box + colored icon square on the left
    ========================================================= */
 
-.stat-title {
-    -fx-text-fill: #68766D;
-
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
+.info-box {
+    -fx-background-color: white;
+    -fx-background-radius: 3px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 3, 0.1, 0, 1);
 }
 
+.info-icon-aqua {
+    -fx-background-color: #00C0EF;
+    -fx-background-radius: 3 0 0 3;
+    -fx-text-fill: white;
+    -fx-font-size: 34px;
+    -fx-alignment: CENTER;
+}
 
-/* =========================================================
-   STAT CARD NUMBER
-   ========================================================= */
+.info-icon-red {
+    -fx-background-color: #DD4B39;
+    -fx-background-radius: 3 0 0 3;
+    -fx-text-fill: white;
+    -fx-font-size: 34px;
+    -fx-alignment: CENTER;
+}
 
-.stat-number {
-    -fx-text-fill: #2E8B57;
+.info-icon-green {
+    -fx-background-color: #00A65A;
+    -fx-background-radius: 3 0 0 3;
+    -fx-text-fill: white;
+    -fx-font-size: 34px;
+    -fx-alignment: CENTER;
+}
 
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 32px;
+.info-icon-yellow {
+    -fx-background-color: #F39C12;
+    -fx-background-radius: 3 0 0 3;
+    -fx-text-fill: white;
+    -fx-font-size: 34px;
+    -fx-alignment: CENTER;
+}
+
+.info-box-title {
+    -fx-text-fill: #444444;
+    -fx-font-size: 11px;
+    -fx-font-weight: normal;
+}
+
+.info-box-number {
+    -fx-text-fill: #222222;
+    -fx-font-size: 18px;
     -fx-font-weight: bold;
 }
 
@@ -494,484 +581,167 @@
 
 .welcome-card {
     -fx-background-color: white;
-
-    -fx-background-radius: 15px;
-
+    -fx-background-radius: 3px;
     -fx-padding: 30px;
-
-    -fx-effect: dropshadow(
-        gaussian,
-        rgba(23,74,50,0.09),
-        15,
-        0.15,
-        0,
-        5
-    );
+    -fx-border-color: #F39C12;
+    -fx-border-width: 3 0 0 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 3, 0.1, 0, 1);
 }
 
-
-/* WELCOME TITLE */
-
 .welcome-title {
-    -fx-text-fill: #2E8B57;
-
-    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #333333;
     -fx-font-size: 22px;
     -fx-font-weight: bold;
 }
 
-
-/* WELCOME TEXT */
-
 .welcome-text {
-    -fx-text-fill: #68766D;
-
-    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #777777;
     -fx-font-size: 14px;
 }
 
 
 /* =========================================================
-   GENERAL BUTTON
+   FORMS (Add Book etc.)
    ========================================================= */
-
-.button {
-    -fx-font-family: "Segoe UI";
-
-    -fx-cursor: hand;
-}
-
-
-/* =========================================================
-   GENERAL LABEL
-   ========================================================= */
-
-.label {
-    -fx-font-family: "Segoe UI";
-}
-
-
-/* =========================================================
-   ADD BOOK FORM
-   ========================================================= */
-
-
-/* FORM CARD */
 
 .form-card {
     -fx-background-color: white;
-
-    -fx-background-radius: 18px;
-
+    -fx-background-radius: 3px;
     -fx-padding: 30px;
-
-    -fx-effect: dropshadow(
-        gaussian,
-        rgba(23,74,50,0.09),
-        18,
-        0.15,
-        0,
-        5
-    );
+    -fx-border-color: #F39C12;
+    -fx-border-width: 3 0 0 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 3, 0.1, 0, 1);
 }
-
-
-/* FORM CARD TITLE */
 
 .form-card-title {
-    -fx-text-fill: #21352A;
-
-    -fx-font-family: "Segoe UI";
-
+    -fx-text-fill: #333333;
     -fx-font-size: 22px;
-
     -fx-font-weight: bold;
 }
-
-
-/* FORM LABEL */
 
 .form-label {
-    -fx-text-fill: #35453B;
-
-    -fx-font-family: "Segoe UI";
-
+    -fx-text-fill: #333333;
     -fx-font-size: 14px;
-
     -fx-font-weight: bold;
 }
-
-
-/* FORM INPUT */
 
 .form-input {
-    -fx-background-color: #F7FAF8;
-
-    -fx-border-color: #D7EADF;
-
-    -fx-border-width: 1.5px;
-
-    -fx-border-radius: 10px;
-
-    -fx-background-radius: 10px;
-
+    -fx-background-color: white;
+    -fx-border-color: #D2D6DE;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
     -fx-padding: 0 14px;
-
-    -fx-font-family: "Segoe UI";
-
     -fx-font-size: 14px;
 }
-
-
-/* INPUT HOVER */
 
 .form-input:hover {
-    -fx-border-color: #9BC9AD;
+    -fx-border-color: #F39C12;
 }
-
-
-/* INPUT FOCUS */
 
 .form-input:focused {
-    -fx-background-color: white;
-
-    -fx-border-color: #2E8B57;
-
-    -fx-border-width: 2px;
+    -fx-border-color: #F39C12;
+    -fx-border-width: 1.5px;
 }
-
-
-/* COMBO BOX */
 
 .combo-box.form-input {
-    -fx-background-color: #F7FAF8;
-
-    -fx-border-color: #D7EADF;
-
-    -fx-border-radius: 10px;
-
-    -fx-background-radius: 10px;
+    -fx-background-color: white;
+    -fx-border-color: #D2D6DE;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
 }
 
-
-/* PRIMARY BUTTON */
-
 .primary-button {
-    -fx-background-color: linear-gradient(
-        to right,
-        #2E8B57,
-        #4CAF7A
-    );
-
+    -fx-background-color: #00A65A;
     -fx-text-fill: white;
-
-    -fx-font-family: "Segoe UI";
-
     -fx-font-size: 14px;
-
     -fx-font-weight: bold;
-
-    -fx-background-radius: 10px;
-
+    -fx-background-radius: 3px;
     -fx-cursor: hand;
 }
 
-
 .primary-button:hover {
-    -fx-background-color: #24734A;
+    -fx-background-color: #008D4C;
 }
-
 
 .primary-button:pressed {
-    -fx-background-color: #1B5A39;
+    -fx-background-color: #007A42;
 }
-
-
-/* CLEAR BUTTON */
 
 .clear-button {
     -fx-background-color: white;
-
-    -fx-text-fill: #2E8B57;
-
-    -fx-border-color: #2E8B57;
-
+    -fx-text-fill: #DD4B39;
+    -fx-border-color: #DD4B39;
     -fx-border-width: 1.5px;
-
-    -fx-border-radius: 10px;
-
-    -fx-background-radius: 10px;
-
-    -fx-font-family: "Segoe UI";
-
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
     -fx-font-size: 14px;
-
     -fx-font-weight: bold;
-
     -fx-cursor: hand;
 }
 
-
 .clear-button:hover {
-    -fx-background-color: #E8F7EF;
+    -fx-background-color: #FDECEA;
 }
 
-
-/* FORM MESSAGE */
+.clear-button:pressed {
+    -fx-background-color: #F9D4CF;
+}
 
 .form-message {
-    -fx-text-fill: #2E8B57;
-
-    -fx-font-family: "Segoe UI";
-
+    -fx-text-fill: #00A65A;
     -fx-font-size: 13px;
-
     -fx-font-weight: bold;
 }
 
-
-/* INFO CARD */
-
 .info-card {
-    -fx-background-color: #EEF9F3;
-
-    -fx-background-radius: 12px;
-
+    -fx-background-color: #FFF4E0;
+    -fx-background-radius: 3px;
+    -fx-border-color: #F39C12;
+    -fx-border-width: 0 0 0 3;
     -fx-padding: 15px 20px;
 }
 
-
-/* INFO TEXT */
-
 .info-text {
-    -fx-text-fill: #4F6B5A;
-
-    -fx-font-family: "Segoe UI";
-
+    -fx-text-fill: #8A5A00;
     -fx-font-size: 13px;
 }
 
 
-/* =========================================
-   LIBRARY MANAGEMENT SYSTEM
-   LOGIN PAGE ONLY - CSS DESIGN
-   ========================================= */
+/* =========================================================
+   TABLE VIEW (Members / Books / Issued lists)
+   ========================================================= */
 
-
-/* Main login background */
-
-.login-root {
-    -fx-background-color: #ffffff;
-    -fx-font-family: "Arial";
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #D2D6DE;
+    -fx-border-radius: 3px;
 }
 
-
-/* LEFT PANEL */
-
-.login-left {
-    -fx-background-color: linear-gradient(
-        to bottom right,
-        #19352A,
-        #2E8B57
-    );
-
-    -fx-padding: 35px;
+.table-view .column-header-background {
+    -fx-background-color: #222D32;
 }
 
-
-/* Book icon */
-
-.login-book-icon {
-    -fx-font-size: 65px;
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: #222D32;
+    -fx-border-color: #2C3B41;
+    -fx-size: 38px;
 }
 
-
-/* Library title */
-
-.login-brand {
-    -fx-font-size: 32px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #ffffff;
-}
-
-
-/* Subtitle */
-
-.login-brand-subtitle {
-    -fx-font-size: 15px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #E7F6ED;
-}
-
-
-/* Tagline */
-
-.login-tagline {
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #ffffff;
-    -fx-text-alignment: center;
-}
-
-
-/* Quote */
-
-.login-quote {
-    -fx-font-size: 19px;
-    -fx-font-style: italic;
-    -fx-text-fill: #ffffff;
-}
-
-
-/* Description */
-
-.login-description {
-    -fx-font-size: 13px;
-    -fx-text-fill: #E1F0E7;
-    -fx-text-alignment: center;
-}
-
-
-/* Left panel footer */
-
-.login-footer-left {
-    -fx-font-size: 10px;
-    -fx-text-fill: #C6DED0;
-}
-
-
-/* =========================================
-   RIGHT LOGIN FORM PANEL
-   ========================================= */
-
-.login-right {
-    -fx-background-color: #ffffff;
-    -fx-padding: 40px 60px;
-}
-
-
-/* Welcome heading */
-
-.login-heading {
-    -fx-font-size: 30px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #19352A;
-}
-
-
-/* Welcome subtitle */
-
-.login-subheading {
-    -fx-font-size: 14px;
-    -fx-text-fill: #737F78;
-}
-
-
-/* Username and password labels */
-
-.login-label {
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #34433A;
-}
-
-
-/* =========================================
-   USERNAME AND PASSWORD FIELDS
-   ========================================= */
-
-.login-input {
-    -fx-pref-height: 44px;
-    -fx-background-color: #F7FAF8;
-    -fx-border-color: #D9E5DD;
-    -fx-border-width: 1px;
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
-    -fx-padding: 0 12px;
-    -fx-font-size: 13px;
-    -fx-text-fill: #34433A;
-    -fx-prompt-text-fill: #9AA79F;
-}
-
-
-.login-input:focused {
-    -fx-background-color: #ffffff;
-    -fx-border-color: #2E8B57;
-    -fx-border-width: 1.5px;
-}
-
-
-/* =========================================
-   LOGIN BUTTON
-   ========================================= */
-
-.login-button {
-    -fx-pref-height: 45px;
-    -fx-background-color: #2E8B57;
-    -fx-background-radius: 8px;
-    -fx-border-radius: 8px;
-    -fx-text-fill: #ffffff;
-    -fx-font-size: 15px;
-    -fx-font-weight: bold;
-    -fx-cursor: hand;
-}
-
-
-.login-button:hover {
-    -fx-background-color: #24734A;
-}
-
-
-.login-button:pressed {
-    -fx-background-color: #1B5A39;
-}
-
-
-/* =========================================
-   CLEAR BUTTON
-   ========================================= */
-
-.login-clear-button {
-    -fx-pref-height: 42px;
-    -fx-background-color: #ffffff;
-    -fx-border-color: #2E8B57;
-    -fx-border-width: 1.2px;
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
-    -fx-text-fill: #2E8B57;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-cursor: hand;
-}
-
-
-.login-clear-button:hover {
-    -fx-background-color: #EEF9F3;
-}
-
-
-.login-clear-button:pressed {
-    -fx-background-color: #DFF1E7;
-}
-
-
-/* =========================================
-   ERROR MESSAGE
-   ========================================= */
-
-.login-error {
-    -fx-font-size: 12px;
-    -fx-text-fill: #D64550;
+.table-view .column-header .label {
+    -fx-text-fill: white;
     -fx-font-weight: bold;
 }
 
+.table-row-cell:odd {
+    -fx-background-color: #F9FAFC;
+}
 
-/* =========================================
-   FOOTER
-   ========================================= */
+.table-row-cell:selected {
+    -fx-background-color: #F39C12;
+}
 
-.login-footer {
-    -fx-font-size: 10px;
-    -fx-text-fill: #8A948D;
-    -fx-text-alignment: center;
+.table-row-cell:selected .text {
+    -fx-fill: white;
 }
