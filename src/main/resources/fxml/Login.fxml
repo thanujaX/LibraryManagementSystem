@@ -8,48 +8,45 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane prefHeight="650" prefWidth="1000" styleClass="root" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.controller.LoginController">
+<StackPane prefHeight="650" prefWidth="1000" styleClass="login-root" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.controller.LoginController">
 
-    <HBox prefHeight="560" prefWidth="900">
+    <HBox maxHeight="Infinity" maxWidth="Infinity">
 
         <!-- ==============================
-             LEFT SIDE - LIBRARY
+             LEFT SIDE - LIBRARY (fixed width)
              ============================== -->
 
-        <StackPane prefHeight="560" prefWidth="500" styleClass="library-section">
+        <StackPane maxWidth="500" minWidth="500" prefWidth="500" styleClass="library-section">
 
-               <VBox alignment="CENTER_LEFT" maxWidth="430" spacing="15">
-      
-                      <!-- MAIN TITLE -->
-      
-                      <Label styleClass="library-title" text="Library Management " />
+            <VBox alignment="CENTER_LEFT" maxWidth="430" spacing="15">
 
-                   <Label styleClass="library-subtitle" text="Access knowledge, build your future." />
-      
-                      <Label styleClass="library-description" text="Manage books, members and borrowing records easily." wrapText="true" />
+                <!-- MAIN TITLE -->
+                <Label styleClass="library-title" text="Library Management" />
 
-               </VBox>
+                <Label styleClass="library-subtitle" text="Access knowledge, build your future." />
+
+                <Label styleClass="library-description" text="Manage books, members and borrowing records easily." wrapText="true" />
+
+            </VBox>
 
         </StackPane>
 
 
         <!-- ==============================
-             RIGHT SIDE - LOGIN
+             RIGHT SIDE - LOGIN (fills the remaining space)
              ============================== -->
 
-        <StackPane prefHeight="560" prefWidth="400">
+        <StackPane HBox.hgrow="ALWAYS" maxWidth="Infinity" maxHeight="Infinity" styleClass="login-card">
 
-            <VBox alignment="CENTER" maxWidth="430.0" prefHeight="660.0" prefWidth="430.0" spacing="18" styleClass="login-card">
+            <VBox alignment="CENTER" maxWidth="300" spacing="18">
 
                 <!-- LOGIN TITLE -->
-
                 <Label styleClass="login-title" text="Welcome Back!" />
 
                 <Label styleClass="login-subtitle" text="Please login to continue" />
 
 
                 <!-- USERNAME -->
-
                 <VBox maxWidth="300" spacing="7">
 
                     <Label styleClass="field-label" text="Username" />
@@ -60,7 +57,6 @@
 
 
                 <!-- PASSWORD -->
-
                 <VBox maxWidth="300" spacing="7">
 
                     <Label styleClass="field-label" text="Password" />
@@ -71,22 +67,18 @@
 
 
                 <!-- ERROR MESSAGE -->
-
                 <Label fx:id="errorLabel" maxWidth="300" styleClass="error-label" text="" wrapText="true" />
 
 
                 <!-- LOGIN BUTTON -->
-
                 <Button onAction="#handleLogin" prefHeight="45" prefWidth="300" styleClass="login-button" text="LOGIN" />
 
 
                 <!-- CLEAR BUTTON -->
-
                 <Button onAction="#handleClear" prefHeight="42" prefWidth="300" styleClass="clear-button" text="CLEAR" />
 
 
                 <!-- FOOTER -->
-
                 <Label styleClass="footer-label" text="Library Management System • 2026" />
 
             </VBox>
@@ -96,4 +88,3 @@
     </HBox>
 
 </StackPane>
-
