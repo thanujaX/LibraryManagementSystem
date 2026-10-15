@@ -36,7 +36,7 @@ public class AddBookController {
         String yearStr = publishedYearField.getText().trim();
         String qtyStr = quantityField.getText().trim();
 
-        // VALIDATION - ඔයාගේ Code එකමයි
+
         if (bookId.isEmpty() || title.isEmpty() || author.isEmpty() || category == null || yearStr.isEmpty() || qtyStr.isEmpty()) {
             messageLabel.setText("Please fill in all fields.");
             return;
@@ -59,7 +59,7 @@ public class AddBookController {
             messageLabel.setText("Quantity must be a number."); return;
         }
 
-        // --- DATABASE එකට දාන තැන (මේ ටික තමයි අලුතෙන් දැම්මේ) ---
+
         try {
             Connection conn = DBConnection.getInstance().getConnection();
             String sql = "INSERT INTO book (isbn, title, author, category, published_year, quantity) VALUES (?,?,?,?,?,?)";
@@ -85,7 +85,7 @@ public class AddBookController {
         } catch (Exception e) {
             e.printStackTrace();
             messageLabel.setText("Error: " + e.getMessage());
-            // ISBN එක duplicate නම් මේකෙන් පේනවා
+
         }
     }
 
