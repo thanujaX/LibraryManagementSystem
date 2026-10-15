@@ -36,7 +36,6 @@ public class AddBookController {
         String yearStr = publishedYearField.getText().trim();
         String qtyStr = quantityField.getText().trim();
 
-
         if (bookId.isEmpty() || title.isEmpty() || author.isEmpty() || category == null || yearStr.isEmpty() || qtyStr.isEmpty()) {
             messageLabel.setText("Please fill in all fields.");
             return;
@@ -59,10 +58,10 @@ public class AddBookController {
             messageLabel.setText("Quantity must be a number."); return;
         }
 
-
         try {
             Connection conn = DBConnection.getInstance().getConnection();
-            String sql = "INSERT INTO book (isbn, title, author, category, published_year, quantity) VALUES (?,?,?,?,?,?)";
+            // UPDATED QUERY - with created_at and updated_at
+            String sql = "INSERT INTO book (isbn, title, author, category, published_year, quantity, created_at, updated_at) VALUES (?,?,?,?,?,?, NOW(), NOW())";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, bookId);
             ps.setString(2, title);
@@ -85,7 +84,6 @@ public class AddBookController {
         } catch (Exception e) {
             e.printStackTrace();
             messageLabel.setText("Error: " + e.getMessage());
-
         }
     }
 
