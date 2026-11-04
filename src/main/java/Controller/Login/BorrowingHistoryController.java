@@ -1,6 +1,6 @@
 package com.library.controller;
 
-import com.library.Util.DBConnection;
+import dto.BorrowingHistoryDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,33 +9,23 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import model.BorrowingHistoryModel;
 import java.time.LocalDate;
 
 public class BorrowingHistoryController {
 
-    @FXML
-    private TextField searchField;
-    @FXML
-    private TableView<BorrowingRecord> historyTable;
-    @FXML
-    private TableColumn<BorrowingRecord, String> memberIdColumn;
-    @FXML
-    private TableColumn<BorrowingRecord, String> bookTitleColumn;
-    @FXML
-    private TableColumn<BorrowingRecord, LocalDate> issueDateColumn;
-    @FXML
-    private TableColumn<BorrowingRecord, LocalDate> dueDateColumn;
-    @FXML
-    private TableColumn<BorrowingRecord, LocalDate> returnDateColumn;
-    @FXML
-    private TableColumn<BorrowingRecord, String> statusColumn;
-    @FXML
-    private Label historyCountLabel;
+    @FXML private TextField searchField;
+    @FXML private TableView<BorrowingHistoryDTO> historyTable;
+    @FXML private TableColumn<BorrowingHistoryDTO, String> memberIdColumn;
+    @FXML private TableColumn<BorrowingHistoryDTO, String> bookTitleColumn;
+    @FXML private TableColumn<BorrowingHistoryDTO, LocalDate> issueDateColumn;
+    @FXML private TableColumn<BorrowingHistoryDTO, LocalDate> dueDateColumn;
+    @FXML private TableColumn<BorrowingHistoryDTO, LocalDate> returnDateColumn;
+    @FXML private TableColumn<BorrowingHistoryDTO, String> statusColumn;
+    @FXML private Label historyCountLabel;
 
-    private ObservableList<BorrowingRecord> historyList = FXCollections.observableArrayList();
+    private ObservableList<BorrowingHistoryDTO> historyList = FXCollections.observableArrayList();
+    private final BorrowingHistoryModel historyModel = new BorrowingHistoryModel();
 
     @FXML
     public void initialize() {
@@ -45,37 +35,33 @@ public class BorrowingHistoryController {
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
         returnDateColumn.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
-        loadFromDB();
+        loadFromModel();
     }
 
-    private void loadFromDB() {
+    private void loadFromModel() {
         historyList.clear();
-        try {
-            Connection conn = DBConnection.getInstance().getConnection();
-            String sql = "SELECT ib.member_id, b.title, ib.issue_date, ib.due_date, ib.return_date, ib.status FROM issued_books ib JOIN book b ON ib.isbn = b.isbn ORDER BY ib.issue_date DESC";
-            PreparedStatement pst = conn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                String memberId = rs.getString("member_id");
-                String bookTitle = rs.getString("title");
-                LocalDate issueDate = rs.getDate("issue_date") != null ? rs.getDate("issue_date").toLocalDate() : null;
-                LocalDate dueDate = rs.getDate("due_date") != null ? rs.getDate("due_date").toLocalDate() : null;
-                LocalDate returnDate = rs.getDate("return_date") != null ? rs.getDate("return_date").toLocalDate() : null;
-                String status = rs.getString("status");
-
-                if (status == null || status.isEmpty()) {
-                    if (returnDate != null) status = "Returned";
-                    else if (dueDate != null && dueDate.isBefore(LocalDate.now())) status = "Overdue";
-                    else status = "Borrowed";
-                }
-
-                historyList.add(new BorrowingRecord(memberId, bookTitle, issueDate, dueDate, returnDate, status));
+        var data = historyModel.getAllHistory();
+        for (var dto : data) {
+            String status = dto.getStatus();
+            if (status == null || status.isEmpty()) {
+                if (dto.getReturnDate() != null) status = "Returned";
+                else if (dto.getDueDate() != null && dto.getDueDate().isBefore(LocalDate.now())) status = "Overdue";
+                else status = "Borrowed";
             }
-            historyTable.setItems(historyList);
-            updateHistoryCount();
-        } catch (Exception e) {
-            e.printStackTrace();
+            historyList.add(new BorrowingHistoryDTO(
+                    dto.getIssueId(),
+                    dto.getMemberId(),
+                    dto.getMemberName(),
+                    dto.getIsbn(),
+                    dto.getBookTitle(),
+                    dto.getIssueDate(),
+                    dto.getDueDate(),
+                    dto.getReturnDate(),
+                    status
+            ));
         }
+        historyTable.setItems(historyList);
+        updateHistoryCount();
     }
 
     @FXML
@@ -86,8 +72,8 @@ public class BorrowingHistoryController {
             updateHistoryCount();
             return;
         }
-        ObservableList<BorrowingRecord> searchResults = FXCollections.observableArrayList();
-        for (BorrowingRecord record : historyList) {
+        ObservableList<BorrowingHistoryDTO> searchResults = FXCollections.observableArrayList();
+        for (var record : historyList) {
             if (record.getMemberId().toLowerCase().contains(searchText)
                     || record.getBookTitle().toLowerCase().contains(searchText)
                     || record.getStatus().toLowerCase().contains(searchText)) {
@@ -107,29 +93,5 @@ public class BorrowingHistoryController {
 
     private void updateHistoryCount() {
         historyCountLabel.setText("Records: " + historyList.size());
-    }
-
-    public static class BorrowingRecord {
-        private final String memberId;
-        private final String bookTitle;
-        private final LocalDate issueDate;
-        private final LocalDate dueDate;
-        private final LocalDate returnDate;
-        private final String status;
-
-        public BorrowingRecord(String memberId, String bookTitle, LocalDate issueDate, LocalDate dueDate, LocalDate returnDate, String status) {
-            this.memberId = memberId;
-            this.bookTitle = bookTitle;
-            this.issueDate = issueDate;
-            this.dueDate = dueDate;
-            this.returnDate = returnDate;
-            this.status = status;
-        }
-        public String getMemberId() { return memberId; }
-        public String getBookTitle() { return bookTitle; }
-        public LocalDate getIssueDate() { return issueDate; }
-        public LocalDate getDueDate() { return dueDate; }
-        public LocalDate getReturnDate() { return returnDate; }
-        public String getStatus() { return status; }
     }
 }
