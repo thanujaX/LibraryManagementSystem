@@ -1,6 +1,7 @@
 package com.library.controller;
 
 import com.library.Util.DBConnection;
+import dto.IssueDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,6 +9,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import model.IssueBookModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,19 +21,17 @@ import java.util.Map;
 
 public class IssueBookController {
 
-    @FXML
-    private ComboBox<String> memberComboBox;
-    @FXML
-    private ComboBox<String> bookComboBox;
-    @FXML
-    private DatePicker issueDatePicker;
-    @FXML
-    private DatePicker dueDatePicker;
-    @FXML
-    private Label messageLabel;
+    @FXML private ComboBox<String> memberComboBox;
+    @FXML private ComboBox<String> bookComboBox;
+    @FXML private DatePicker issueDatePicker;
+    @FXML private DatePicker dueDatePicker;
+    @FXML private Label messageLabel;
 
     private Map<String, String> memberMap = new HashMap<>();
     private Map<String, String> bookMap = new HashMap<>();
+
+
+    private final IssueBookModel issueBookModel = new IssueBookModel();
 
     @FXML
     public void initialize() {
@@ -45,18 +46,17 @@ public class IssueBookController {
         memberMap.clear();
         try {
             Connection conn = DBConnection.getInstance().getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT member_id, full_name FROM member");
+            ResultSet rs = conn.createStatement().executeQuery("SELECT member_id, full_name FROM member");
             while (rs.next()) {
                 String id = rs.getString("member_id");
-                String name = rs.getString("full_name");
-                String display = id + " - " + name;
+                String display = id + " - " + rs.getString("full_name");
                 list.add(display);
                 memberMap.put(display, id);
             }
             memberComboBox.setItems(list);
         } catch (Exception e) {
             e.printStackTrace();
+            messageLabel.setText("Error loading members: " + e.getMessage());
         }
     }
 
@@ -65,12 +65,11 @@ public class IssueBookController {
         bookMap.clear();
         try {
             Connection conn = DBConnection.getInstance().getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT isbn, title FROM book WHERE quantity > 0");
+
+            ResultSet rs = conn.createStatement().executeQuery("SELECT isbn, title FROM book WHERE quantity > 0");
             while (rs.next()) {
                 String isbn = rs.getString("isbn");
-                String title = rs.getString("title");
-                String display = isbn + " - " + title;
+                String display = isbn + " - " + rs.getString("title");
                 list.add(display);
                 bookMap.put(display, isbn);
             }
@@ -82,61 +81,48 @@ public class IssueBookController {
 
     @FXML
     private void handleIssueBook() {
-        String member = memberComboBox.getValue();
-        String book = bookComboBox.getValue();
+        String memberDisplay = memberComboBox.getValue();
+        String bookDisplay = bookComboBox.getValue();
         LocalDate issueDate = issueDatePicker.getValue();
         LocalDate dueDate = dueDatePicker.getValue();
 
-        if (member == null) {
-            messageLabel.setText("Please select a member.");
-            return;
-        }
-        if (book == null) {
-            messageLabel.setText("Please select a book.");
-            return;
-        }
-        if (issueDate == null) {
-            messageLabel.setText("Please select the issue date.");
-            return;
-        }
-        if (dueDate == null) {
-            messageLabel.setText("Please select the due date.");
+        if (memberDisplay == null || bookDisplay == null || issueDate == null || dueDate == null) {
+            messageLabel.setText("Please fill all fields!");
             return;
         }
         if (dueDate.isBefore(issueDate)) {
-            messageLabel.setText("Due date must be after the issue date.");
+            messageLabel.setText("Due date must be after issue date!");
             return;
         }
 
-        String memberId = memberMap.get(member);
-        String isbn = bookMap.get(book);
-
         try {
-            Connection conn = DBConnection.getInstance().getConnection();
-            String sql = "INSERT INTO issued_books (member_id, isbn, issue_date, due_date, status) VALUES (?, ?, ?, ?, 'ISSUED')";
-            PreparedStatement pst = conn.prepareStatement(sql);
-            pst.setString(1, memberId);
-            pst.setString(2, isbn);
-            pst.setDate(3, java.sql.Date.valueOf(issueDate));
-            pst.setDate(4, java.sql.Date.valueOf(dueDate));
-            pst.executeUpdate();
+            String memberId = memberMap.get(memberDisplay);
+            String isbn = bookMap.get(bookDisplay);
 
-            String updateSql = "UPDATE book SET quantity = quantity - 1 WHERE isbn = ?";
-            PreparedStatement pst2 = conn.prepareStatement(updateSql);
-            pst2.setString(1, isbn);
-            pst2.executeUpdate();
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Book Issued");
-            alert.setHeaderText("Book Issued Successfully");
-            alert.setContentText("Member: " + member + "\nBook: " + book + "\nIssue Date: " + issueDate + "\nDue Date: " + dueDate);
-            alert.showAndWait();
+            IssueDTO dto = new IssueDTO(memberId, isbn, issueDate, dueDate, "ISSUED");
 
-            messageLabel.setText("Book issued successfully!");
-            handleClear();
+
+            boolean isIssued = issueBookModel.issueBook(dto);
+
+            if (isIssued) {
+
+                Connection conn = DBConnection.getInstance().getConnection();
+                PreparedStatement pst = conn.prepareStatement("UPDATE book SET quantity = quantity - 1 WHERE isbn = ?");
+                pst.setString(1, isbn);
+                pst.executeUpdate();
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText("Book Issued Successfully!");
+                alert.setContentText("Member: " + memberDisplay + "\nBook: " + bookDisplay);
+                alert.showAndWait();
+
+                handleClear();
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            messageLabel.setText("DB Error: " + e.getMessage());
+            messageLabel.setText("Error: " + e.getMessage());
         }
     }
 
