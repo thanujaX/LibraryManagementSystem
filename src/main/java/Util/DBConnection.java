@@ -1,4 +1,4 @@
-package com.library.Util;
+package Util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +9,7 @@ public class DBConnection {
 
     private DBConnection() throws Exception {
         connection = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/library_db",
+                "jdbc:mysql://localhost:3306/lms_hibernate_db",
                 "root",
                 "1234"
         );
