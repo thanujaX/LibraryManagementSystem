@@ -1,7 +1,9 @@
-package com.library.controller;
+package Controller.Login;
 
-import com.library.Util.DBConnection;
+import Util.HibernateUtil;
 import dto.IssueDTO;
+import entity.Book;
+import entity.Member;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,13 +12,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import model.IssueBookModel;
+import org.hibernate.Session;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class IssueBookController {
@@ -29,7 +29,6 @@ public class IssueBookController {
 
     private Map<String, String> memberMap = new HashMap<>();
     private Map<String, String> bookMap = new HashMap<>();
-
 
     private final IssueBookModel issueBookModel = new IssueBookModel();
 
@@ -44,14 +43,12 @@ public class IssueBookController {
     private void loadMembers() {
         ObservableList<String> list = FXCollections.observableArrayList();
         memberMap.clear();
-        try {
-            Connection conn = DBConnection.getInstance().getConnection();
-            ResultSet rs = conn.createStatement().executeQuery("SELECT member_id, full_name FROM member");
-            while (rs.next()) {
-                String id = rs.getString("member_id");
-                String display = id + " - " + rs.getString("full_name");
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            List<Member> members = session.createQuery("FROM Member", Member.class).list();
+            for (Member m : members) {
+                String display = m.getMemberId() + " - " + m.getFullName();
                 list.add(display);
-                memberMap.put(display, id);
+                memberMap.put(display, m.getMemberId());
             }
             memberComboBox.setItems(list);
         } catch (Exception e) {
@@ -63,19 +60,17 @@ public class IssueBookController {
     private void loadBooks() {
         ObservableList<String> list = FXCollections.observableArrayList();
         bookMap.clear();
-        try {
-            Connection conn = DBConnection.getInstance().getConnection();
-
-            ResultSet rs = conn.createStatement().executeQuery("SELECT isbn, title FROM book WHERE quantity > 0");
-            while (rs.next()) {
-                String isbn = rs.getString("isbn");
-                String display = isbn + " - " + rs.getString("title");
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            List<Book> books = session.createQuery("FROM Book WHERE availableQuantity > 0", Book.class).list();
+            for (Book b : books) {
+                String display = b.getId() + " - " + b.getTitle();
                 list.add(display);
-                bookMap.put(display, isbn);
+                bookMap.put(display, b.getId());
             }
             bookComboBox.setItems(list);
         } catch (Exception e) {
             e.printStackTrace();
+            messageLabel.setText("Error loading books: " + e.getMessage());
         }
     }
 
@@ -98,27 +93,17 @@ public class IssueBookController {
         try {
             String memberId = memberMap.get(memberDisplay);
             String isbn = bookMap.get(bookDisplay);
-
-
-            IssueDTO dto = new IssueDTO(memberId, isbn, issueDate, dueDate, "ISSUED");
-
-
+            IssueDTO dto = new IssueDTO(memberId, isbn, issueDate, dueDate, "BORROWED");
             boolean isIssued = issueBookModel.issueBook(dto);
-
             if (isIssued) {
-
-                Connection conn = DBConnection.getInstance().getConnection();
-                PreparedStatement pst = conn.prepareStatement("UPDATE book SET quantity = quantity - 1 WHERE isbn = ?");
-                pst.setString(1, isbn);
-                pst.executeUpdate();
-
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Success");
                 alert.setHeaderText("Book Issued Successfully!");
                 alert.setContentText("Member: " + memberDisplay + "\nBook: " + bookDisplay);
                 alert.showAndWait();
-
                 handleClear();
+            } else {
+                messageLabel.setText("Issue Failed! Book not available or already borrowed.");
             }
         } catch (Exception e) {
             e.printStackTrace();
