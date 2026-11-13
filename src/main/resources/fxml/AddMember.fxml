@@ -11,252 +11,97 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.library.controller.AddMemberController"
+            fx:controller="Controller.Login.AddMemberController"
             stylesheets="@../css/style.css"
             styleClass="dashboard-root"
             prefWidth="1200"
             prefHeight="700">
 
     <!-- SIDEBAR -->
-
     <left>
-
-        <VBox prefWidth="260"
-              spacing="12"
-              styleClass="sidebar">
-
+        <VBox prefWidth="260" spacing="12" styleClass="sidebar">
             <padding>
-                <Insets top="30"
-                        right="20"
-                        bottom="25"
-                        left="20"/>
+                <Insets top="30" right="20" bottom="25" left="20"/>
             </padding>
-
-            <Label text="LIBRARY"
-                   styleClass="sidebar-title"/>
-
-            <Label text="Management System"
-                   styleClass="sidebar-subtitle"
-                   wrapText="true"/>
-
-            <VBox spacing="10"
-                  VBox.vgrow="ALWAYS">
-
+            <Label text="LIBRARY" styleClass="sidebar-title"/>
+            <Label text="Management System" styleClass="sidebar-subtitle" wrapText="true"/>
+            <VBox spacing="10" VBox.vgrow="ALWAYS">
                 <padding>
                     <Insets top="20"/>
                 </padding>
-
-                <Button text="Dashboard"
-                        maxWidth="Infinity"
-                        prefHeight="45"
-                        styleClass="sidebar-button"/>
-
-                <Button text="Add Book"
-                        maxWidth="Infinity"
-                        prefHeight="45"
-                        styleClass="sidebar-button"/>
-
-                <Button text="Add Member"
-                        maxWidth="Infinity"
-                        prefHeight="45"
-                        styleClass="sidebar-button-active"/>
-
-                <Button text="Manage Members"
-                        maxWidth="Infinity"
-                        prefHeight="45"
-                        styleClass="sidebar-button"/>
-
-                <Button text="Issue Book"
-                        maxWidth="Infinity"
-                        prefHeight="45"
-                        styleClass="sidebar-button"/>
-
-                <Button text="Return Book"
-                        maxWidth="Infinity"
-                        prefHeight="45"
-                        styleClass="sidebar-button"/>
-
-                <Button text="Borrowing History"
-                        maxWidth="Infinity"
-                        prefHeight="45"
-                        styleClass="sidebar-button"
-                        wrapText="true"/>
-
+                <Button text="Dashboard" maxWidth="Infinity" prefHeight="45" styleClass="sidebar-button"/>
+                <Button text="Add Book" maxWidth="Infinity" prefHeight="45" styleClass="sidebar-button"/>
+                <Button text="Add Member" maxWidth="Infinity" prefHeight="45" styleClass="sidebar-button-active"/>
+                <Button text="Manage Members" maxWidth="Infinity" prefHeight="45" styleClass="sidebar-button"/>
+                <Button text="Issue Book" maxWidth="Infinity" prefHeight="45" styleClass="sidebar-button"/>
+                <Button text="Return Book" maxWidth="Infinity" prefHeight="45" styleClass="sidebar-button"/>
+                <Button text="Borrowing History" maxWidth="Infinity" prefHeight="45" styleClass="sidebar-button" wrapText="true"/>
             </VBox>
-
-            <Button text="LOGOUT"
-                    maxWidth="Infinity"
-                    prefHeight="45"
-                    styleClass="logout-button"/>
-
+            <Button text="LOGOUT" maxWidth="Infinity" prefHeight="45" styleClass="logout-button"/>
         </VBox>
-
     </left>
 
-
     <!-- MAIN CONTENT -->
-
     <center>
-
-        <VBox spacing="25"
-              styleClass="dashboard-content">
-
+        <VBox spacing="25" styleClass="dashboard-content">
             <padding>
-                <Insets top="35"
-                        right="50"
-                        bottom="35"
-                        left="50"/>
+                <Insets top="35" right="50" bottom="35" left="50"/>
             </padding>
 
-
             <!-- HEADER -->
-
             <VBox spacing="6">
-
-                <Label text="Add New Member"
-                       styleClass="dashboard-title"/>
-
-                <Label text="Register a new member in the library"
-                       styleClass="dashboard-subtitle"/>
-
+                <Label text="Add New Member" styleClass="dashboard-title"/>
+                <Label text="Register a new member in the library" styleClass="dashboard-subtitle"/>
             </VBox>
-
 
             <!-- FORM CARD -->
-
-            <VBox spacing="25"
-                  styleClass="form-card">
-
-                <Label text="Member Information"
-                       styleClass="form-card-title"/>
-
+            <VBox spacing="25" styleClass="form-card">
+                <Label text="Member Information" styleClass="form-card-title"/>
 
                 <!-- ROW 1 -->
-
                 <HBox spacing="25">
-
-                    <VBox spacing="8"
-                          HBox.hgrow="ALWAYS">
-
-                        <Label text="Member ID"
-                               styleClass="form-label"/>
-
-                        <TextField fx:id="memberIdField"
-                                   promptText="Enter member ID"
-                                   prefHeight="45"
-                                   styleClass="form-input"/>
-
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Member ID" styleClass="form-label"/>
+                        <TextField fx:id="memberIdField" promptText="Enter member ID" prefHeight="45" styleClass="form-input"/>
                     </VBox>
-
-
-                    <VBox spacing="8"
-                          HBox.hgrow="ALWAYS">
-
-                        <Label text="Full Name"
-                               styleClass="form-label"/>
-
-                        <TextField fx:id="fullNameField"
-                                   promptText="Enter full name"
-                                   prefHeight="45"
-                                   styleClass="form-input"/>
-
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Full Name" styleClass="form-label"/>
+                        <TextField fx:id="fullNameField" promptText="Enter full name" prefHeight="45" styleClass="form-input"/>
                     </VBox>
-
                 </HBox>
-
 
                 <!-- ROW 2 -->
-
                 <HBox spacing="25">
-
-                    <VBox spacing="8"
-                          HBox.hgrow="ALWAYS">
-
-                        <Label text="Email"
-                               styleClass="form-label"/>
-
-                        <TextField fx:id="emailField"
-                                   promptText="Enter email address"
-                                   prefHeight="45"
-                                   styleClass="form-input"/>
-
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Email" styleClass="form-label"/>
+                        <TextField fx:id="emailField" promptText="Enter email address" prefHeight="45" styleClass="form-input"/>
                     </VBox>
-
-
-                    <VBox spacing="8"
-                          HBox.hgrow="ALWAYS">
-
-                        <Label text="Phone Number"
-                               styleClass="form-label"/>
-
-                        <TextField fx:id="phoneField"
-                                   promptText="Enter phone number"
-                                   prefHeight="45"
-                                   styleClass="form-input"/>
-
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Phone Number" styleClass="form-label"/>
+                        <TextField fx:id="phoneField" promptText="Enter phone number" prefHeight="45" styleClass="form-input"/>
                     </VBox>
-
                 </HBox>
-
 
                 <!-- ADDRESS -->
-
                 <VBox spacing="8">
-
-                    <Label text="Address"
-                           styleClass="form-label"/>
-
-                    <TextArea fx:id="addressArea"
-                              promptText="Enter member address"
-                              prefHeight="100"
-                              wrapText="true"
-                              styleClass="form-input"/>
-
+                    <Label text="Address" styleClass="form-label"/>
+                    <TextArea fx:id="addressArea" promptText="Enter member address" prefHeight="100" wrapText="true" styleClass="form-input"/>
                 </VBox>
 
-
                 <!-- MESSAGE -->
-
-                <Label fx:id="messageLabel"
-                       text=""
-                       wrapText="true"
-                       styleClass="form-message"/>
-
+                <Label fx:id="messageLabel" text="" wrapText="true" styleClass="form-message"/>
 
                 <!-- BUTTONS -->
-
-                <HBox spacing="15"
-                      alignment="CENTER_RIGHT">
-
-                    <Button text="CLEAR"
-                            onAction="#handleClear"
-                            prefWidth="130"
-                            prefHeight="45"
-                            styleClass="clear-button"/>
-
-                    <Button text="REGISTER MEMBER"
-                            onAction="#handleRegisterMember"
-                            prefWidth="180"
-                            prefHeight="45"
-                            styleClass="primary-button"/>
-
+                <HBox spacing="15" alignment="CENTER_RIGHT">
+                    <Button text="CLEAR" onAction="#handleClear" prefWidth="130" prefHeight="45" styleClass="clear-button"/>
+                    <Button text="REGISTER MEMBER" onAction="#handleRegisterMember" prefWidth="180" prefHeight="45" styleClass="primary-button"/>
                 </HBox>
-
             </VBox>
 
-
             <!-- INFO -->
-
             <HBox styleClass="info-card">
-
-                <Label text="Tip: Enter accurate member contact details for library records."
-                       styleClass="info-text"
-                       wrapText="true"/>
-
+                <Label text="Tip: Enter accurate member contact details for library records." styleClass="info-text" wrapText="true"/>
             </HBox>
-
         </VBox>
-
     </center>
-
 </BorderPane>

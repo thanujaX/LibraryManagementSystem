@@ -12,7 +12,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.library.controller.ReturnBookController"
+            fx:controller="Controller.Login.ReturnBookController"
             stylesheets="@../css/style.css"
             styleClass="dashboard-root"
             prefWidth="1200"

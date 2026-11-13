@@ -12,22 +12,21 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.library.controller.ManageMembersController"
+            fx:controller="Controller.Login.ManageMembersController"
             stylesheets="@../css/style.css"
             styleClass="dashboard-root"
             prefWidth="1200"
             prefHeight="700">
 
+    <!-- LEFT SIDEBAR -->
     <left>
         <VBox prefWidth="260"
               spacing="12"
               styleClass="sidebar">
 
             <padding>
-                <Insets top="30"
-                        right="20"
-                        bottom="25"
-                        left="20"/>
+                <Insets top="30" right="20"
+                        bottom="25" left="20"/>
             </padding>
 
             <Label text="LIBRARY"
@@ -37,8 +36,7 @@
                    styleClass="sidebar-subtitle"
                    wrapText="true"/>
 
-            <VBox spacing="10"
-                  VBox.vgrow="ALWAYS">
+            <VBox spacing="10" VBox.vgrow="ALWAYS">
 
                 <padding>
                     <Insets top="20"/>
@@ -90,37 +88,27 @@
         </VBox>
     </left>
 
-
+    <!-- CENTER CONTENT -->
     <center>
-
         <VBox spacing="20"
               styleClass="dashboard-content">
 
             <padding>
-                <Insets top="35"
-                        right="40"
-                        bottom="35"
-                        left="40"/>
+                <Insets top="35" right="40"
+                        bottom="35" left="40"/>
             </padding>
 
-
-            <!-- TITLE -->
-
+            <!-- PAGE TITLE -->
             <VBox spacing="6">
-
                 <Label text="Manage Members"
                        styleClass="dashboard-title"/>
 
                 <Label text="Search, edit and manage library members"
                        styleClass="dashboard-subtitle"/>
-
             </VBox>
 
-
-            <!-- SEARCH -->
-
+            <!-- SEARCH SECTION -->
             <HBox spacing="15">
-
                 <TextField fx:id="searchField"
                            promptText="Search by Member ID, Name, Email or Phone..."
                            prefHeight="45"
@@ -138,18 +126,14 @@
                         prefWidth="120"
                         prefHeight="45"
                         styleClass="clear-button"/>
-
             </HBox>
 
-
-            <!-- MEMBER TABLE -->
-
+            <!-- MEMBER TABLE CARD -->
             <VBox spacing="15"
                   styleClass="form-card"
                   VBox.vgrow="ALWAYS">
 
                 <HBox alignment="CENTER_LEFT">
-
                     <Label text="Member List"
                            styleClass="form-card-title"
                            HBox.hgrow="ALWAYS"/>
@@ -157,45 +141,50 @@
                     <Label fx:id="memberCountLabel"
                            text="Members: 0"
                            styleClass="form-message"/>
-
                 </HBox>
 
-
+                <!-- TABLE VIEW - FIXED PART -->
                 <TableView fx:id="memberTable"
                            VBox.vgrow="ALWAYS">
 
-                    <columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
 
+                    <columns>
                         <TableColumn fx:id="memberIdColumn"
                                      text="Member ID"
-                                     prefWidth="110"/>
+                                     prefWidth="100"/>
 
                         <TableColumn fx:id="nameColumn"
                                      text="Full Name"
-                                     prefWidth="190"/>
+                                     prefWidth="150"/>
 
                         <TableColumn fx:id="emailColumn"
                                      text="Email"
-                                     prefWidth="220"/>
+                                     prefWidth="170"/>
 
                         <TableColumn fx:id="phoneColumn"
                                      text="Phone Number"
-                                     prefWidth="150"/>
+                                     prefWidth="120"/>
 
                         <TableColumn fx:id="addressColumn"
                                      text="Address"
-                                     prefWidth="230"/>
+                                     prefWidth="150"/>
 
+                        <TableColumn fx:id="createdAtColumn"
+                                     text="Created At"
+                                     prefWidth="155"/>
+
+                        <TableColumn fx:id="updatedAtColumn"
+                                     text="Updated At"
+                                     prefWidth="155"/>
                     </columns>
-
                 </TableView>
 
-
-                <!-- BUTTONS -->
-
+                <!-- ACTION BUTTONS -->
                 <HBox spacing="15"
                       alignment="CENTER_RIGHT">
-
                     <Button text="EDIT MEMBER"
                             onAction="#handleEdit"
                             prefWidth="150"
@@ -207,22 +196,16 @@
                             prefWidth="160"
                             prefHeight="45"
                             styleClass="clear-button"/>
-
                 </HBox>
-
             </VBox>
 
-
+            <!-- INFORMATION -->
             <HBox styleClass="info-card">
-
                 <Label text="Tip: Select a member from the table before editing or deleting."
                        styleClass="info-text"
                        wrapText="true"/>
-
             </HBox>
 
         </VBox>
-
     </center>
-
 </BorderPane>

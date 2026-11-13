@@ -11,7 +11,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.library.controller.IssueBookController"
+            fx:controller="Controller.Login.IssueBookController"
             stylesheets="@../css/style.css"
             styleClass="dashboard-root"
             prefWidth="1200"

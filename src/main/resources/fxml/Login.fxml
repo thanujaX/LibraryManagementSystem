@@ -8,13 +8,16 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane prefHeight="650" prefWidth="1000" styleClass="login-root" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.library.controller.LoginController">
+<StackPane prefHeight="650" prefWidth="1000"
+           styleClass="login-root"
+           stylesheets="@../css/style.css"
+           xmlns="http://javafx.com/javafx/26"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="Controller.Login.LoginController">
 
     <HBox maxHeight="Infinity" maxWidth="Infinity">
 
-        <!-- ==============================
-             LEFT SIDE - LIBRARY (fixed width)
-             ============================== -->
+
 
         <StackPane maxWidth="500" minWidth="500" prefWidth="500" styleClass="library-section">
 
@@ -32,21 +35,19 @@
         </StackPane>
 
 
-        <!-- ==============================
-             RIGHT SIDE - LOGIN (fills the remaining space)
-             ============================== -->
+
 
         <StackPane HBox.hgrow="ALWAYS" maxWidth="Infinity" maxHeight="Infinity" styleClass="login-card">
 
             <VBox alignment="CENTER" maxWidth="300" spacing="18">
 
-                <!-- LOGIN TITLE -->
+
                 <Label styleClass="login-title" text="Welcome Back!" />
 
                 <Label styleClass="login-subtitle" text="Please login to continue" />
 
 
-                <!-- USERNAME -->
+
                 <VBox maxWidth="300" spacing="7">
 
                     <Label styleClass="field-label" text="Username" />
