@@ -3,6 +3,7 @@ package dto;
 import java.time.LocalDate;
 
 public class IssueDTO {
+
     private int issueId;
     private String memberId;
     private String isbn;
@@ -12,12 +13,15 @@ public class IssueDTO {
     private LocalDate returnDate;
     private String status;
 
-
     public IssueDTO() {
     }
 
+    // Constructor for issuing a book
+    public IssueDTO(String memberId, String isbn,
+                    LocalDate issueDate,
+                    LocalDate dueDate,
+                    String status) {
 
-    public IssueDTO(String memberId, String isbn, LocalDate issueDate, LocalDate dueDate, String status) {
         this.memberId = memberId;
         this.isbn = isbn;
         this.issueDate = issueDate;
@@ -25,8 +29,12 @@ public class IssueDTO {
         this.status = status;
     }
 
+    // Constructor without book title
+    public IssueDTO(int issueId, String memberId,
+                    String isbn, LocalDate issueDate,
+                    LocalDate dueDate, LocalDate returnDate,
+                    String status) {
 
-    public IssueDTO(int issueId, String memberId, String isbn, LocalDate issueDate, LocalDate dueDate, LocalDate returnDate, String status) {
         this.issueId = issueId;
         this.memberId = memberId;
         this.isbn = isbn;
@@ -36,8 +44,14 @@ public class IssueDTO {
         this.status = status;
     }
 
+    // Constructor with book title
+    public IssueDTO(int issueId, String memberId,
+                    String isbn, String title,
+                    LocalDate issueDate,
+                    LocalDate dueDate,
+                    LocalDate returnDate,
+                    String status) {
 
-    public IssueDTO(int issueId, String memberId, String isbn, String title, LocalDate issueDate, LocalDate dueDate, LocalDate returnDate, String status) {
         this.issueId = issueId;
         this.memberId = memberId;
         this.isbn = isbn;
@@ -48,41 +62,67 @@ public class IssueDTO {
         this.status = status;
     }
 
-    // Getters and Setters
-    public int getIssueId() { return issueId; }
-    public void setIssueId(int issueId) { this.issueId = issueId; }
+    public int getIssueId() {
+        return issueId;
+    }
 
-    public String getMemberId() { return memberId; }
-    public void setMemberId(String memberId) { this.memberId = memberId; }
+    public void setIssueId(int issueId) {
+        this.issueId = issueId;
+    }
 
-    public String getIsbn() { return isbn; }
-    public void setIsbn(String isbn) { this.isbn = isbn; }
+    public String getMemberId() {
+        return memberId;
+    }
 
-    public String getTitle() { return title; }
-    public void setTitle(String title) { this.title = title; }
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
 
-    public LocalDate getIssueDate() { return issueDate; }
-    public void setIssueDate(LocalDate issueDate) { this.issueDate = issueDate; }
+    public String getIsbn() {
+        return isbn;
+    }
 
-    public LocalDate getDueDate() { return dueDate; }
-    public void setDueDate(LocalDate dueDate) { this.dueDate = dueDate; }
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
-    public LocalDate getReturnDate() { return returnDate; }
-    public void setReturnDate(LocalDate returnDate) { this.returnDate = returnDate; }
+    public String getTitle() {
+        return title;
+    }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-    @Override
-    public String toString() {
-        return "IssueDTO{" +
-                "issueId=" + issueId +
-                ", memberId='" + memberId + '\'' +
-                ", isbn='" + isbn + '\'' +
-                ", issueDate=" + issueDate +
-                ", dueDate=" + dueDate +
-                ", returnDate=" + returnDate +
-                ", status='" + status + '\'' +
-                '}';
+    public LocalDate getIssueDate() {
+        return issueDate;
+    }
+
+    public void setIssueDate(LocalDate issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(LocalDate returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
