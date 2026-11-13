@@ -11,7 +11,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.library.controller.AddBookController"
+            fx:controller="Controller.Login.AddBookController"
             stylesheets="@../css/style.css"
             styleClass="dashboard-root"
             prefWidth="1200"
@@ -93,7 +93,6 @@
 
     </left>
 
-
     <!-- MAIN CONTENT -->
 
     <center>
@@ -108,7 +107,6 @@
                         left="50"/>
             </padding>
 
-
             <!-- PAGE HEADER -->
 
             <VBox spacing="6">
@@ -121,7 +119,6 @@
 
             </VBox>
 
-
             <!-- FORM CARD -->
 
             <VBox spacing="25"
@@ -129,7 +126,6 @@
 
                 <Label text="Book Information"
                        styleClass="form-card-title"/>
-
 
                 <!-- ROW 1 -->
 
@@ -141,13 +137,12 @@
                         <Label text="Book ID / ISBN"
                                styleClass="form-label"/>
 
-                        <TextField fx:id="bookIdField"
+                        <TextField fx:id="txtBookId"
                                    promptText="Enter Book ID or ISBN"
                                    prefHeight="45"
                                    styleClass="form-input"/>
 
                     </VBox>
-
 
                     <VBox spacing="8"
                           HBox.hgrow="ALWAYS">
@@ -155,7 +150,7 @@
                         <Label text="Book Title"
                                styleClass="form-label"/>
 
-                        <TextField fx:id="bookTitleField"
+                        <TextField fx:id="txtTitle"
                                    promptText="Enter book title"
                                    prefHeight="45"
                                    styleClass="form-input"/>
@@ -163,7 +158,6 @@
                     </VBox>
 
                 </HBox>
-
 
                 <!-- ROW 2 -->
 
@@ -175,13 +169,12 @@
                         <Label text="Author"
                                styleClass="form-label"/>
 
-                        <TextField fx:id="authorField"
+                        <TextField fx:id="txtAuthor"
                                    promptText="Enter author name"
                                    prefHeight="45"
                                    styleClass="form-input"/>
 
                     </VBox>
-
 
                     <VBox spacing="8"
                           HBox.hgrow="ALWAYS">
@@ -189,7 +182,7 @@
                         <Label text="Category"
                                styleClass="form-label"/>
 
-                        <ComboBox fx:id="categoryComboBox"
+                        <ComboBox fx:id="cmbCategory"
                                   promptText="Select category"
                                   prefHeight="45"
                                   maxWidth="Infinity"
@@ -198,7 +191,6 @@
                     </VBox>
 
                 </HBox>
-
 
                 <!-- ROW 3 -->
 
@@ -210,13 +202,12 @@
                         <Label text="Published Year"
                                styleClass="form-label"/>
 
-                        <TextField fx:id="publishedYearField"
+                        <TextField fx:id="txtYear"
                                    promptText="e.g. 2024"
                                    prefHeight="45"
                                    styleClass="form-input"/>
 
                     </VBox>
-
 
                     <VBox spacing="8"
                           HBox.hgrow="ALWAYS">
@@ -224,7 +215,7 @@
                         <Label text="Quantity"
                                styleClass="form-label"/>
 
-                        <TextField fx:id="quantityField"
+                        <TextField fx:id="txtQuantity"
                                    promptText="Enter quantity"
                                    prefHeight="45"
                                    styleClass="form-input"/>
@@ -233,14 +224,12 @@
 
                 </HBox>
 
-
                 <!-- MESSAGE -->
 
-                <Label fx:id="messageLabel"
+                <Label fx:id="lblMsg"
                        text=""
                        wrapText="true"
                        styleClass="form-message"/>
-
 
                 <!-- BUTTONS -->
 
@@ -262,7 +251,6 @@
                 </HBox>
 
             </VBox>
-
 
             <!-- BOTTOM INFO -->
 
