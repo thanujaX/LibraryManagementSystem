@@ -1,21 +1,41 @@
 package dto;
 
+import java.time.LocalDateTime;
+
 public class MemberDTO {
+
     private String memberId;
     private String fullName;
     private String email;
     private String phone;
     private String address;
 
-    public MemberDTO() {
-    }
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
-    public MemberDTO(String memberId, String fullName, String email, String phone, String address) {
+    // Constructor for Insert and Update
+    public MemberDTO(String memberId, String fullName,
+                     String email, String phone, String address) {
+
         this.memberId = memberId;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
         this.address = address;
+    }
+
+    // Constructor with Created At and Updated At
+    public MemberDTO(String memberId, String fullName,
+                     String email, String phone, String address,
+                     LocalDateTime createdAt, LocalDateTime updatedAt) {
+
+        this.memberId = memberId;
+        this.fullName = fullName;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public String getMemberId() {
@@ -56,5 +76,21 @@ public class MemberDTO {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
